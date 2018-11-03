@@ -5,6 +5,9 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <QTcpServer>
+#include <queue>
+
+#include "contentsocket.h"
 
 class ContentServer : public QObject
 {

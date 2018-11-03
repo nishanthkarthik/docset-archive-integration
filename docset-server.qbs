@@ -8,6 +8,7 @@ Project {
         Depends { name: "cdb" }
 
         cpp.cxxLanguageVersion: "c++11"
+        cpp.cxxFlags: [ "-O3" ]
 
         cpp.defines: [
             // The following define makes your compiler emit warnings if you use
@@ -41,6 +42,8 @@ Project {
     }
 
     StaticLibrary {
+        files: [
+        ]
         name: "cdb"
 
         Export {

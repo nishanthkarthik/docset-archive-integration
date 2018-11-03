@@ -6,6 +6,7 @@
 ContentServer::ContentServer(QObject* parent) : QObject(parent)
 {
     server = new QTcpServer(parent);
+
     connect(server, &QTcpServer::newConnection, this, &ContentServer::ContentServerConnection);
     if (!server->listen(QHostAddress::Any, 8080)) {
         QDebug(QtMsgType::QtCriticalMsg) << "Could not start webserver";
@@ -17,6 +18,7 @@ ContentServer::ContentServer(QObject* parent) : QObject(parent)
 ContentServer::~ContentServer()
 {
     server->close();
+    delete server;
 }
 
 void ContentServer::ContentServerConnection()

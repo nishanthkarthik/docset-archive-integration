@@ -30,16 +30,16 @@ This can be used to maintain backwards compatibility with `QWebView` in `zeal`
 
 ```
 Lifting the server siege...
-Transactions:		       73762 hits
-Availability:		       99.85 %
-Elapsed time:		       32.60 secs
-Data transferred:	     1063.87 MB
+Transactions:		       65857 hits
+Availability:		       99.84 %
+Elapsed time:		       14.89 secs
+Data transferred:	      950.36 MB
 Response time:		        0.01 secs
-Transaction rate:	     2262.64 trans/sec
-Throughput:		       32.63 MB/sec
-Concurrency:		       24.58
-Successful transactions:       73762
-Failed transactions:	         112
-Longest transaction:	        0.04
+Transaction rate:	     4422.90 trans/sec
+Throughput:		       63.83 MB/sec
+Concurrency:		       24.08
+Successful transactions:       65858
+Failed transactions:	         103
+Longest transaction:	        0.06
 Shortest transaction:	        0.00
 ```

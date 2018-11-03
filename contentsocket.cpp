@@ -5,9 +5,6 @@
 
 ContentSocket::ContentSocket(QObject* parent, QTcpSocket* socket) : QObject (parent), socket(socket)
 {
-    regExp = QRegularExpression(QString("^GET \\/([^\\s]+\\.(\\w+)) HTTP\\/\\d\\.\\d"));
-    regExp.optimize();
-    regExp.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
     cdb = std::unique_ptr<FileQuery>(new FileQuery("sqlite.cdb"));
 }
 
@@ -18,6 +15,8 @@ ContentSocket::~ContentSocket()
 void ContentSocket::TxRx()
 {
     QString reqHeaders(socket->readAll());
+
+    static const QRegularExpression regExp = QRegularExpression(QString("^GET \\/([^\\s]+\\.(\\w+)) HTTP\\/\\d\\.\\d"));
 
     QRegularExpressionMatch match = regExp.match(reqHeaders);
     if (!match.hasMatch() || !socket->isWritable()) return;
@@ -30,7 +29,7 @@ void ContentSocket::TxRx()
     socket->write(headers);
     socket->write(mimeType(ext).toUtf8());
 
-    static QCache<QString, QByteArray> cache(100);
+    static QCache<QString, QByteArray> cache(1000);
     if (cache.contains(path)) {
         socket->write(*cache[path]);
     } else {

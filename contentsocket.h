@@ -12,17 +12,16 @@ class ContentSocket : public QObject
 {
     Q_OBJECT
 public:
-    explicit ContentSocket(QObject* parent = nullptr, QTcpSocket* socket = nullptr);
+    explicit ContentSocket(QObject* parent, QTcpSocket* socket);
     ~ContentSocket();
 public slots:
     void TxRx();
     void ClosingClient();
 private:
-    const QString& mimeType(const QString& ext);
+    inline const QString& mimeType(const QString& ext);
 public:
     QTcpSocket* socket;
 private:
-    QRegularExpression regExp;
     std::unique_ptr<FileQuery> cdb;
 };
 
